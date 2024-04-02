@@ -1,7 +1,7 @@
 package com.etiyacrm.customerservice.dataAccess.abstracts;
 
-import com.etiyacrm.customerservice.entities.Customer;
+import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IndividualCustomerRepository extends JpaRepository<Customer,Long> {
+public interface IndividualCustomerRepository extends JpaRepository<IndividualCustomer,Long> {
 }

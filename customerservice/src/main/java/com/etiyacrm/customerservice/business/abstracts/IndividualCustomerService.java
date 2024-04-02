@@ -4,13 +4,14 @@ import com.etiyacrm.customerservice.business.dtos.requests.individualCustomer.Cr
 import com.etiyacrm.customerservice.business.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.business.dtos.responses.individualCustomer.*;
 import com.etiyacrm.customerservice.entities.Customer;
+import com.etiyacrm.customerservice.entities.IndividualCustomer;
 
 import java.util.List;
 
 public interface IndividualCustomerService {
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest);
     UpdatedIndividualCustomerResponse update(long id, UpdateIndividualCustomerRequest updateIndividualCustomerRequest);
-    Customer findById(long id);
+    IndividualCustomer findById(long id);
     DeletedIndividualCustomerResponse delete(long id);
     List<GetListIndividualCustomerResponse> getAll();
     GetIndividualCustomerResponse getById(long id);

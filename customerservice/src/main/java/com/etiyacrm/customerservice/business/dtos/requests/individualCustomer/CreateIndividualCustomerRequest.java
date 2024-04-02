@@ -24,7 +24,7 @@ public class CreateIndividualCustomerRequest {
     @Email(message = "Not a valid email address")
     private String email;
     @NotNull(message = "Gender cannot be null")
-    @NotEmpty(message = "Gender cannot be empty")
+//    @NotEmpty(message = "Gender cannot be empty")
     private Boolean gender;
     @NotBlank(message = "Mother name cannot be null and only spaces")
     private String motherName;
@@ -32,6 +32,6 @@ public class CreateIndividualCustomerRequest {
     private String fatherName;
     @NotBlank(message = "Nationality id cannot be null and only spaces")
     private String nationalityIdentity;
-    @NotBlank(message = "Birth date cannot be null")
+    @NotNull(message = "Birth date cannot be null")
     private LocalDateTime birthDate;
 }
