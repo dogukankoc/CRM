@@ -6,7 +6,6 @@ import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
-import com.etiyacrm.customerservice.core.crossCusttingConcerns.mapping.ModelMapperService;
 import com.etiyacrm.customerservice.repositories.CustomerRepository;
 import com.etiyacrm.customerservice.repositories.IndividualCustomerRepository;
 import com.etiyacrm.customerservice.entities.Customer;
@@ -28,7 +27,6 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class IndividualCustomerServiceImpl implements IndividualCustomerService {
-    private ModelMapperService modelMapperService;
     private IndividualCustomerRepository individualCustomerRepository;
     private CustomerRepository customerRepository; //Sonra değiştir
     private CustomerService customerService;

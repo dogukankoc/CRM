@@ -11,9 +11,5 @@ public class CustomerserviceApplication {
 		SpringApplication.run(CustomerserviceApplication.class, args);
 	}
 
-	@Bean
-	public ModelMapper getModelMapper() {
-		return new ModelMapper();
-	}
 
 }
