@@ -1,9 +1,9 @@
 package com.etiyacrm.customerservice.api.controllers;
 
-import com.etiyacrm.customerservice.business.abstracts.IndividualCustomerService;
-import com.etiyacrm.customerservice.business.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
-import com.etiyacrm.customerservice.business.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
-import com.etiyacrm.customerservice.business.dtos.responses.individualCustomer.*;
+import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
+import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
+import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
+import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
