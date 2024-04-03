@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class GetAddressResponse {
     private long id;
     private String description;
-    private String city;
+    private int cityId;
 
 }

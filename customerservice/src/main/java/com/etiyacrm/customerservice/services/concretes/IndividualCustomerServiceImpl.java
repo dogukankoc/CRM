@@ -12,6 +12,7 @@ import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.services.mappers.CityMapper;
 import com.etiyacrm.customerservice.services.mappers.IndividualCustomerMapper;
+import com.etiyacrm.customerservice.services.rules.IndividualCustomerBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,26 +31,32 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private IndividualCustomerRepository individualCustomerRepository;
     private CustomerRepository customerRepository; //Sonra değiştir
     private CustomerService customerService;
+    private IndividualCustomerBusinessRules individualCustomerBusinessRules;
 
 
     @Override
     public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
+        individualCustomerBusinessRules.individualCustomerNationalityIdentityCanNotBeDuplicatedWhenInserted(createIndividualCustomerRequest.getNationalityIdentity());
+
         Customer mappedCustomer = new Customer();
         mappedCustomer.setEmail(createIndividualCustomerRequest.getEmail());
         Customer addedCustomer = customerRepository.save(mappedCustomer);
         IndividualCustomer mappedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
+        mappedIndividualCustomer.setCustomer(addedCustomer);
         mappedIndividualCustomer.getCustomer().setId(addedCustomer.getId());
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(mappedIndividualCustomer);
-        return IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
+        CreatedIndividualCustomerResponse createdIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
+        createdIndividualCustomerResponse.setEmail(addedCustomer.getEmail());
+        return createdIndividualCustomerResponse;
     }
 
     @Override
     public UpdatedIndividualCustomerResponse update(long id, UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
-
+//        individualCustomerBusinessRules.individualCustomerNationalityIdentityCanNotBeDuplicatedWhenInserted(updateIndividualCustomerRequest.getNationalityIdentity());
         IndividualCustomer getIndividualCustomerById = findById(id);
         IndividualCustomer mappedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);
         mappedIndividualCustomer.setId(id);
-        mappedIndividualCustomer.getCustomer().setId(getIndividualCustomerById.getCustomer().getId());
+        mappedIndividualCustomer.setCustomer(getIndividualCustomerById.getCustomer());
         mappedIndividualCustomer.setCreatedDate(getIndividualCustomerById.getCreatedDate());
         IndividualCustomer updatedIndividualCustomer = individualCustomerRepository.save(mappedIndividualCustomer);
 
@@ -59,13 +66,16 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         Customer updatedCustomer = customerRepository.save(getCustomerById);
         updatedIndividualCustomer.setCustomer(updatedCustomer);
 
-        return IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
+        UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
+        updatedIndividualCustomerResponse.setEmail(updatedCustomer.getEmail());
+        return updatedIndividualCustomerResponse;
     }
 
 
 
     @Override
     public DeletedIndividualCustomerResponse delete(long id) {
+//        individualCustomerBusinessRules.individualCustomerHasBeenDeleted(id);
         IndividualCustomer getIndividualCustomerById = findById(id);
         getIndividualCustomerById.setDeletedDate(LocalDateTime.now());
         IndividualCustomer deletedIndividualCustomer = individualCustomerRepository.save(getIndividualCustomerById);
@@ -85,8 +95,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public GetIndividualCustomerResponse getById(long id) {
+//        individualCustomerBusinessRules.individualCustomerHasBeenDeleted(id);
+//        individualCustomerBusinessRules.individualCustomerIdIsExist(id);
         IndividualCustomer individualCustomer = findById(id);
-        return IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
+        GetIndividualCustomerResponse getIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
+        getIndividualCustomerResponse.setEmail(individualCustomer.getCustomer().getEmail());
+        return getIndividualCustomerResponse;
     }
 
 

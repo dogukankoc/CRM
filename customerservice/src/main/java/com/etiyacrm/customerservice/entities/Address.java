@@ -16,6 +16,7 @@ public class Address extends BaseEntity {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name="description")
     private String description;
     @ManyToOne()
     @JoinColumn(name = "city_id")
