@@ -2,8 +2,8 @@ package com.etiyacrm.customerservice.services.mappers;
 
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
-import com.etiyacrm.customerservice.services.dtos.responses.city.CreatedCityResponse;
-import com.etiyacrm.customerservice.services.dtos.responses.city.GetAllCityResponse;
+import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;
+import com.etiyacrm.customerservice.services.dtos.responses.city.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -12,6 +12,18 @@ public interface CityMapper {
     CityMapper INSTANCE = Mappers.getMapper(CityMapper.class);
 
     GetAllCityResponse getAllCityResponseFromCity(City city);
+
+    //Create Mapping
     City cityFromCreateCityRequest(CreateCityRequest createCityRequest);
     CreatedCityResponse createdCityResponseFromCity(City city);
+
+    //Update Mapping
+    City cityFromUpdateCityRequest(UpdateCityRequest updateCityRequest);
+    UpdatedCityResponse updatedCityResponseFromCity(City city);
+
+    GetCityResponse getCityResponseFromCity(City city);
+
+    DeletedCityResponse deletedCityResponseFromCity(City city);
+
+
 }

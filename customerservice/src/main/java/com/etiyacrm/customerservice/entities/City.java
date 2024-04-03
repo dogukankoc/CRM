@@ -15,10 +15,10 @@ import java.util.List;
 @NoArgsConstructor
 public class City extends BaseEntity {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
     @OneToMany(mappedBy = "city")
     private List<Address> adresses;

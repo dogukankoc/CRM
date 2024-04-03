@@ -16,11 +16,25 @@ public class CityBusinessRules {
     private CityRepository cityRepository;
     private MessageService messageService;
 
-    public void  cityNameCanNotBeDuplicatedWhenInserted(String name){
+    public void cityNameCanNotBeDuplicatedWhenInserted(String name) {
         Optional<City> city = cityRepository.findByNameIgnoreCase(name);
 
-        if(city.isPresent()){
+        if (city.isPresent()) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityNameExists));
+        }
+    }
+
+    public void cityIdIsExist(long id) {
+        Optional<City> city = cityRepository.findById(id);
+        if (city.isEmpty()) {
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityIdNotAvailable));
+        }
+    }
+
+    public void cityHasBeenDeleted(long id) {
+        Optional<City> city = cityRepository.findById(id);
+        if (city.get().getDeletedDate() != null) {
+            throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.CityHasBeenDeleted));
         }
     }
 }
