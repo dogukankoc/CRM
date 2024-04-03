@@ -1,5 +1,6 @@
 package com.etiyacrm.customerservice.controllers;
 
+import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
@@ -27,9 +28,9 @@ public class IndividualCustomersController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<GetListIndividualCustomerResponse> getAll(){
+    public List<GetAllIndividualCustomerResponse> getAll(){
 
-        return individualCustomerService.getAll();
+        return individualCustomerService.getAll(new PageInfo());
     }
 
     @PostMapping

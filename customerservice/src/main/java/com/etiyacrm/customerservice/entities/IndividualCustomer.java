@@ -42,7 +42,7 @@ public class IndividualCustomer extends BaseEntity {
     @Column(name = "birth_date")
     private LocalDateTime birthDate;
 
-    @OneToOne
+    @OneToOne()//cascade = CascadeType.ALL
     @JoinColumn(name = "customer_id")
     private Customer customer;
 }

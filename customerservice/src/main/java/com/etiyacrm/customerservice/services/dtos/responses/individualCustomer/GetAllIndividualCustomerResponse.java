@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetListIndividualCustomerResponse {
+public class GetAllIndividualCustomerResponse {
     private long id;
     private String firstName;
     private String middleName;
