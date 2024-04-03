@@ -8,6 +8,7 @@ import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityReques
 import com.etiyacrm.customerservice.services.dtos.responses.city.CreatedCityResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.city.GetAllCityResponse;
 import com.etiyacrm.customerservice.services.mappers.CityMapper;
+import com.etiyacrm.customerservice.services.rules.CityBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CityServiceImpl implements CityService {
     private CityRepository cityRepository;
+    private CityBusinessRules cityBusinessRules;
 
     @Override
     public List<GetAllCityResponse> getAll(PageInfo pageInfo) {
@@ -31,9 +33,10 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CreatedCityResponse add(CreateCityRequest createCityRequest) {
+        cityBusinessRules.cityNameCanNotBeDuplicatedWhenInserted(createCityRequest.getName());
         City city = CityMapper.INSTANCE.cityFromCreateCityRequest(createCityRequest);
         City createdCity = cityRepository.save(city);
-        CreatedCityResponse createdCityResponse  = CityMapper.INSTANCE.createdCityResponseFromCity(city);
+        CreatedCityResponse createdCityResponse  = CityMapper.INSTANCE.createdCityResponseFromCity(createdCity);
         return createdCityResponse;
     }
 }

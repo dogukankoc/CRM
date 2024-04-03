@@ -7,12 +7,11 @@ import com.etiyacrm.customerservice.services.dtos.responses.city.GetAllCityRespo
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+@Mapper
 public interface CityMapper {
     CityMapper INSTANCE = Mappers.getMapper(CityMapper.class);
 
     GetAllCityResponse getAllCityResponseFromCity(City city);
     City cityFromCreateCityRequest(CreateCityRequest createCityRequest);
     CreatedCityResponse createdCityResponseFromCity(City city);
-
-
 }

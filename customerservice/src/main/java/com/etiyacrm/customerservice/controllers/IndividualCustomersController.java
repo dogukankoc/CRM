@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.api.controllers;
+package com.etiyacrm.customerservice.controllers;
 
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
