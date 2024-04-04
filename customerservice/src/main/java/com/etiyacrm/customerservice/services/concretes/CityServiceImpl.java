@@ -8,6 +8,7 @@ import com.etiyacrm.customerservice.services.abstracts.CityService;
 import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.city.*;
+import com.etiyacrm.customerservice.services.dtos.responses.pagging.GetPageInfoResponse;
 import com.etiyacrm.customerservice.services.mappers.CityMapper;
 import com.etiyacrm.customerservice.services.rules.CityBusinessRules;
 import lombok.AllArgsConstructor;
@@ -28,10 +29,26 @@ public class CityServiceImpl implements CityService {
     private CityBusinessRules cityBusinessRules;
 
     @Override
-    public List<GetAllCityResponse> getAll(PageInfo pageInfo) {
+    public GetAllCityResponse getAll(PageInfo pageInfo) {
         Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
         Page<City> response = cityRepository.findAll(pageable);
-        return response.stream().filter(city -> city.getDeletedDate() == null).map(city -> CityMapper.INSTANCE.getAllCityResponseFromCity(city)).collect(Collectors.toList());
+
+        List<GetCityResponse> cityResponses = response
+                .filter(city -> city.getDeletedDate() == null)
+                .map(city -> CityMapper.INSTANCE.getCityResponseFromCity(city)).stream().collect(Collectors.toList());
+
+
+        GetPageInfoResponse getPageInfoResponse = new GetPageInfoResponse();
+        getPageInfoResponse.setSize(response.getSize());
+        getPageInfoResponse.setHasNext(response.hasNext());
+        getPageInfoResponse.setTotalPages(response.getTotalPages());
+        getPageInfoResponse.setHasPrevious(response.hasPrevious());
+        getPageInfoResponse.setTotalElements(response.getTotalElements());
+        GetAllCityResponse getAllCityResponse = new GetAllCityResponse();
+
+        getAllCityResponse.setGetCityResponse(cityResponses);
+        getAllCityResponse.setGetPageInfoResponse(getPageInfoResponse);
+        return getAllCityResponse;
     }
 
     @Override

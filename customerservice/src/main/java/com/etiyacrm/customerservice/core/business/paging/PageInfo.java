@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class PageInfo {
-    private int page = 0; //Default value
-    private int size = 10;
+    private int page; //Default value
+    private int size;
 }

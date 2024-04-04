@@ -1,9 +1,11 @@
 package com.etiyacrm.customerservice.services.mappers;
 
+import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.services.dtos.requests.city.CreateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.city.UpdateCityRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.city.*;
+import com.etiyacrm.customerservice.services.dtos.responses.pagging.GetPageInfoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -24,6 +26,8 @@ public interface CityMapper {
     GetCityResponse getCityResponseFromCity(City city);
 
     DeletedCityResponse deletedCityResponseFromCity(City city);
+
+    GetPageInfoResponse pageInfo(GetPageInfoResponse getPageInfoResponsenfo);
 
 
 }
