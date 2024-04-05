@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/cities")
+@RequestMapping("customerservice/api/v1/cities")
 public class CitiesController {
 
     private CityService cityService;
