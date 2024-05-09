@@ -16,6 +16,10 @@ public class Address extends BaseEntity {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name="street")
+    private String street;
+    @Column(name="house_flat_number")
+    private String houseFlatNumber;
     @Column(name="description")
     private String description;
     @ManyToOne()
@@ -24,5 +28,4 @@ public class Address extends BaseEntity {
     @ManyToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
 }

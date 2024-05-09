@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.concretes;
 
-import com.etiyacrm.customerservice.entities.City;
+import com.etiya.common.events.customers.CustomerCreatedEvent;
+import com.etiyacrm.customerservice.kafka.producers.CustomerProducer;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
@@ -32,6 +33,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private CustomerRepository customerRepository; //Sonra değiştir
     private CustomerService customerService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
+    private CustomerProducer customerProducer;
 
 
     @Override
@@ -47,6 +49,9 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(mappedIndividualCustomer);
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
         createdIndividualCustomerResponse.setEmail(addedCustomer.getEmail());
+
+        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(createdIndividualCustomerResponse.getId(), createdIndividualCustomerResponse.getFirstName());
+        customerProducer.sendMessage(customerCreatedEvent);
         return createdIndividualCustomerResponse;
     }
 

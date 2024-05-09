@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="discoveryserver" />
         <module name="ConfigServer" />
+        <module name="common" />
         <module name="Gateway-Server" />
         <module name="searchservice" />
       </profile>
@@ -30,6 +31,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ConfigServer" options="-parameters" />
       <module name="Gateway-Server" options="-parameters" />
+      <module name="common" options="-parameters" />
       <module name="customerservice" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="searchservice" options="-parameters" />

@@ -6,6 +6,8 @@ spring:
       profile: dev
   config:
     import: configserver:http://localhost:8050/
-
-    #ConfigServerin application.yml'ına git. Orası Git'e bağlanıyor. Gitdeki customerservice.dev dosyasını config
-    #ayarı olarak al.
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
