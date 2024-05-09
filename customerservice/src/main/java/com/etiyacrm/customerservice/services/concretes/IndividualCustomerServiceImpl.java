@@ -1,6 +1,6 @@
 package com.etiyacrm.customerservice.services.concretes;
 
-import com.etiya.common.events.customers.CustomerCreatedEvent;
+import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
 import com.etiyacrm.customerservice.kafka.producers.CustomerProducer;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
@@ -41,14 +41,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         individualCustomerBusinessRules.individualCustomerNationalityIdentityCanNotBeDuplicatedWhenInserted(createIndividualCustomerRequest.getNationalityIdentity());
 
         Customer mappedCustomer = new Customer();
-        mappedCustomer.setEmail(createIndividualCustomerRequest.getEmail());
         Customer addedCustomer = customerRepository.save(mappedCustomer);
         IndividualCustomer mappedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromCreateIndividualCustomerRequest(createIndividualCustomerRequest);
         mappedIndividualCustomer.setCustomer(addedCustomer);
         mappedIndividualCustomer.getCustomer().setId(addedCustomer.getId());
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(mappedIndividualCustomer);
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
-        createdIndividualCustomerResponse.setEmail(addedCustomer.getEmail());
 
         CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(createdIndividualCustomerResponse.getId(), createdIndividualCustomerResponse.getFirstName());
         customerProducer.sendMessage(customerCreatedEvent);
@@ -67,12 +65,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
         Customer getCustomerById = customerService.findById(updatedIndividualCustomer.getCustomer().getId());
         getCustomerById.setUpdatedDate(updatedIndividualCustomer.getUpdatedDate());
-        getCustomerById.setEmail(updateIndividualCustomerRequest.getEmail());
+//        getCustomerById.setEmail(updateIndividualCustomerRequest.getEmail());
         Customer updatedCustomer = customerRepository.save(getCustomerById);
         updatedIndividualCustomer.setCustomer(updatedCustomer);
 
         UpdatedIndividualCustomerResponse updatedIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.updatedIndividualCustomerResponseFromIndividualCustomer(updatedIndividualCustomer);
-        updatedIndividualCustomerResponse.setEmail(updatedCustomer.getEmail());
+//        updatedIndividualCustomerResponse.setEmail(updatedCustomer.getEmail());
         return updatedIndividualCustomerResponse;
     }
 
@@ -104,7 +102,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 //        individualCustomerBusinessRules.individualCustomerIdIsExist(id);
         IndividualCustomer individualCustomer = findById(id);
         GetIndividualCustomerResponse getIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
-        getIndividualCustomerResponse.setEmail(individualCustomer.getCustomer().getEmail());
+//        getIndividualCustomerResponse.setEmail(individualCustomer.getCustomer().getEmail());
         return getIndividualCustomerResponse;
     }
 

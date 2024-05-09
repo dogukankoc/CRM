@@ -8,7 +8,7 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.etiya</groupId>
+	<groupId>com.etiyacrm</groupId>
 	<artifactId>customerservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>customerservice</name>
@@ -87,13 +87,12 @@
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.etiya</groupId>
+			<groupId>com.etiyacrm</groupId>
 			<artifactId>common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
