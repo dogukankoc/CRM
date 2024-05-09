@@ -19,9 +19,6 @@ public class UpdateIndividualCustomerRequest {
     private String middleName;
     @NotBlank(message = "Last name cannot be null and only spaces")
     private String lastName;
-    @NotBlank(message = "Email cannot be null and only spaces")
-    @Email(message = "Not a valid email address")
-    private String email;
     @NotNull(message = "Gender cannot be null")
     @NotEmpty(message = "Gender cannot be empty")
     private Boolean gender;
