@@ -1,11 +1,13 @@
 package com.etiyacrm.customerservice.services.concretes;
 
+import com.etiyacrm.customerservice.core.crossCusttingConcerns.types.BusinessException;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
+import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.CreatedContactMediumResponse;
@@ -22,12 +24,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ContactMediumServiceImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
+    private CustomerService customerService;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
 
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromCreateContactMediumRequest(createContactMediumRequest);
-
+        Customer customer = customerService.findById(createContactMediumRequest.getCustomerId());
+        contactMedium.setCustomer(customer);
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
         CreatedContactMediumResponse createdContactMediumResponse = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
         createdContactMediumResponse.setCustomerId(createContactMediumRequest.getCustomerId());
@@ -36,13 +40,15 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public UpdatedContactMediumResponse update(long id, UpdateContactMediumRequest updateContactMediumRequest) {
-        Customer customer = new Customer();
-        customer.setId(id);
 
+        ContactMedium getContactMediumById = findById(id);
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromUpdateContactMediumRequest(updateContactMediumRequest);
         contactMedium.setId(id);
-        contactMedium.setCustomer(customer);
+        contactMedium.setCreatedDate(getContactMediumById.getCreatedDate());
         contactMedium.setUpdatedDate(LocalDateTime.now());
+
+        Customer customer = customerService.findById(getContactMediumById.getCustomer().getId());
+        contactMedium.setCustomer(customer);
         ContactMedium updatedContactmedium = contactMediumRepository.save(contactMedium);
 
         UpdatedContactMediumResponse updatedContactMediumResponse = ContactMediumMapper.INSTANCE.updatedContactMediumResponseFromContactMedium(updatedContactmedium);
@@ -66,5 +72,10 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         DeletedContactMediumResponse deletedContactMediumResponse = ContactMediumMapper.INSTANCE.deletedContactMediumResponseFromContactMedium(deletedContactMedium);
         deletedContactMediumResponse.setDeletedDate(deletedContactMedium.getDeletedDate());
         return deletedContactMediumResponse;
+    }
+
+    @Override
+    public ContactMedium findById(long id) {
+        return contactMediumRepository.findById(id).orElseThrow(() -> new BusinessException("City not found"));
     }
 }
