@@ -16,6 +16,7 @@ public class Address extends BaseEntity {
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    //asf
     @Column(name="street")
     private String street;
     @Column(name="house_flat_number")
