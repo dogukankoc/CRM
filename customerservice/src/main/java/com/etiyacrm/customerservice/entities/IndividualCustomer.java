@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -40,7 +41,7 @@ public class IndividualCustomer extends BaseEntity {
     private String nationalityIdentity;
 
     @Column(name = "birth_date")
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @OneToOne()//cascade = CascadeType.ALL
     @JoinColumn(name = "customer_id")

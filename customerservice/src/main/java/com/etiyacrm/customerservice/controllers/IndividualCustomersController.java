@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/individualCustomers")
+@CrossOrigin(origins = "*")
 public class IndividualCustomersController {
 
     private IndividualCustomerService individualCustomerService;
