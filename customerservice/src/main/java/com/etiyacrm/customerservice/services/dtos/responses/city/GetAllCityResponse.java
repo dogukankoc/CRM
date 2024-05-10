@@ -11,6 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class GetAllCityResponse {
-    private List<GetCityResponse> getCityResponse;
+//    private List<GetCityResponse> getCityResponse;
+    private GetCityResponse getCityResponse;
+
     private GetPageInfoResponse getPageInfoResponse;
 }

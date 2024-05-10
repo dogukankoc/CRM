@@ -34,7 +34,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         contactMedium.setCustomer(customer);
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
         CreatedContactMediumResponse createdContactMediumResponse = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
-        createdContactMediumResponse.setCustomerId(createContactMediumRequest.getCustomerId());
+
         return createdContactMediumResponse;
     }
 

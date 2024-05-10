@@ -29,9 +29,9 @@ public class CitiesController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public GetAllCityResponse getAll(PageInfo pageInfo) {
+    public List<GetListCityResponse> getAll() {
 
-        return cityService.getAll(pageInfo);
+        return cityService.getAll();
     }
 
     @PostMapping

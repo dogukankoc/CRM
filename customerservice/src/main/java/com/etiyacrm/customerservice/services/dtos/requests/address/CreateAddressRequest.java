@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class CreateAddressRequest {
     @NotBlank(message = "Description cannot be null and only spaces")
     private String description;
-//    @NotBlank(message = "City cannot be null and only spaces")
+    private String street;
+    private String houseFlatNumber;
     private int cityId;
+    private int customerId;
 }

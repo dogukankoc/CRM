@@ -3,8 +3,12 @@ package com.etiyacrm.customerservice.services.concretes;
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.crossCusttingConcerns.types.BusinessException;
 import com.etiyacrm.customerservice.entities.Address;
+import com.etiyacrm.customerservice.entities.City;
+import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.repositories.AddressRepository;
 import com.etiyacrm.customerservice.services.abstracts.AddressService;
+import com.etiyacrm.customerservice.services.abstracts.CityService;
+import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.address.CreateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.address.UpdateAddressRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.address.*;
@@ -24,21 +28,38 @@ import java.util.stream.Collectors;
 public class AddressServiceImpl implements AddressService {
 
     private AddressRepository addressRepository;
+    private CustomerService customerService;
+    private CityService cityService;
     @Override
     public CreatedAddressResponse add(CreateAddressRequest createAddressRequest) {
-        Address address = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
-        Address createdAddress = addressRepository.save(address);
-        return AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
+        Address mappedAddress = AddressMapper.INSTANCE.addressFromCreateAddressRequest(createAddressRequest);
+        Customer customer = customerService.findById(createAddressRequest.getCustomerId());
+        City city = cityService.findById(createAddressRequest.getCityId());
+        mappedAddress.setCustomer(customer);
+        mappedAddress.setCity(city);
+        Address createdAddress = addressRepository.save(mappedAddress);
+        CreatedAddressResponse createdAddressResponse = AddressMapper.INSTANCE.createdAddressResponseFromAddress(createdAddress);
+        createdAddressResponse.setCustomerId(createAddressRequest.getCustomerId());
+        createdAddressResponse.setCityId(createAddressRequest.getCityId());
+        return createdAddressResponse;
     }
 
     @Override
     public UpdatedAddressResponse update(long id, UpdateAddressRequest updateAddressRequest) {
-        Address getCityById = findById(id);
+        Address getAddressById = findById(id);
         Address mappedAddress = AddressMapper.INSTANCE.addressFromUpdateAddressRequest((updateAddressRequest));
-        mappedAddress.setCreatedDate(getCityById.getCreatedDate());
         mappedAddress.setId(id);
+        mappedAddress.setCreatedDate(getAddressById.getCreatedDate());
+        mappedAddress.setUpdatedDate(LocalDateTime.now());
+
+
+        City city = cityService.findById(updateAddressRequest.getCityId());
+        mappedAddress.setCity(city);
+        mappedAddress.setCustomer(getAddressById.getCustomer());
         Address updatedAddress = addressRepository.save(mappedAddress);
-        return AddressMapper.INSTANCE.updatedAddressResponseFromAddress(updatedAddress);
+
+        UpdatedAddressResponse updatedAddressResponse = AddressMapper.INSTANCE.updatedAddressResponseFromAddress(updatedAddress);
+        return updatedAddressResponse;
     }
 
     @Override

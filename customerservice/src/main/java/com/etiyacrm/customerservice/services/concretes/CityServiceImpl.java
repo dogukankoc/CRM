@@ -2,6 +2,7 @@ package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.core.crossCusttingConcerns.types.BusinessException;
+import com.etiyacrm.customerservice.core.utilities.mapping.ModelMapperService;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.repositories.CityRepository;
 import com.etiyacrm.customerservice.services.abstracts.CityService;
@@ -27,28 +28,34 @@ public class CityServiceImpl implements CityService {
 
     private CityRepository cityRepository;
     private CityBusinessRules cityBusinessRules;
+    private ModelMapperService modelMapperService;
 
     @Override
-    public GetAllCityResponse getAll(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<City> response = cityRepository.findAll(pageable);
+    public List<GetListCityResponse> getAll() {
+        List<City> cities = cityRepository.findAll();
+        return cities.stream().filter(city -> city.getDeletedDate() == null)
+                .map(city -> modelMapperService.forResponse()
+                        .map(city, GetListCityResponse.class)).collect(Collectors.toList());
 
-        List<GetCityResponse> cityResponses = response
-                .filter(city -> city.getDeletedDate() == null)
-                .map(city -> CityMapper.INSTANCE.getCityResponseFromCity(city)).stream().collect(Collectors.toList());
-
-
-        GetPageInfoResponse getPageInfoResponse = new GetPageInfoResponse();
-        getPageInfoResponse.setSize(response.getSize());
-        getPageInfoResponse.setHasNext(response.hasNext());
-        getPageInfoResponse.setTotalPages(response.getTotalPages());
-        getPageInfoResponse.setHasPrevious(response.hasPrevious());
-        getPageInfoResponse.setTotalElements(response.getTotalElements());
-        GetAllCityResponse getAllCityResponse = new GetAllCityResponse();
-
-        getAllCityResponse.setGetCityResponse(cityResponses);
-        getAllCityResponse.setGetPageInfoResponse(getPageInfoResponse);
-        return getAllCityResponse;
+//        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
+//        Page<City> response = cityRepository.findAll(pageable);
+//
+//        List<GetCityResponse> cityResponses = response
+//                .filter(city -> city.getDeletedDate() == null)
+//                .map(city -> CityMapper.INSTANCE.getCityResponseFromCity(city)).stream().collect(Collectors.toList());
+//
+//
+//        GetPageInfoResponse getPageInfoResponse = new GetPageInfoResponse();
+//        getPageInfoResponse.setSize(response.getSize());
+//        getPageInfoResponse.setHasNext(response.hasNext());
+//        getPageInfoResponse.setTotalPages(response.getTotalPages());
+//        getPageInfoResponse.setHasPrevious(response.hasPrevious());
+//        getPageInfoResponse.setTotalElements(response.getTotalElements());
+//        GetAllCityResponse getAllCityResponse = new GetAllCityResponse();
+//
+//       getAllCityResponse.setGetCityResponse(cityResponses);
+//        getAllCityResponse.setGetPageInfoResponse(getPageInfoResponse);
+//        return getAllCityResponse;
     }
 
     @Override

@@ -15,6 +15,9 @@ public class UpdatedAddressResponse {
 
     private long id;
     private String description;
+    private String street;
+    private String houseFlatNumber;
     private int cityId;
+    private int customerId;
     private LocalDateTime updatedDate;
 }

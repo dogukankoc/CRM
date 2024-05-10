@@ -10,7 +10,7 @@ import com.etiyacrm.customerservice.services.dtos.responses.city.*;
 import java.util.List;
 
 public interface CityService {
-    GetAllCityResponse getAll(PageInfo pageInfo);
+    List<GetListCityResponse> getAll();
 
     CreatedCityResponse add(CreateCityRequest createCityRequest);
 
