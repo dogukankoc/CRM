@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CreatedIndividualCustomerResponse {
     private long id;
+    private long CustomerId;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -19,5 +20,5 @@ public class CreatedIndividualCustomerResponse {
     private String fatherName;
     private String nationalityIdentity;
     private LocalDateTime birthDate;
-    private LocalDateTime createdDate;
+//    private LocalDateTime createdDate;
 }

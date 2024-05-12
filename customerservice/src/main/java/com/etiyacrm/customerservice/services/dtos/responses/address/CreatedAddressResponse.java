@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class CreatedAddressResponse {
     private long id;
-    private String description;
+    private String addressDescription;
     private String street;
     private String houseFlatNumber;
     private int cityId;
     private int customerId;
-    private String createdDate;
+//    private String createdDate;
 }

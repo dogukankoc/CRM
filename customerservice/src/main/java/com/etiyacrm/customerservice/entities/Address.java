@@ -22,7 +22,7 @@ public class Address extends BaseEntity {
     @Column(name="house_flat_number")
     private String houseFlatNumber;
     @Column(name="description")
-    private String description;
+    private String addressDescription;
     @ManyToOne()
     @JoinColumn(name = "city_id")
     private City city;
