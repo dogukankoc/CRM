@@ -48,13 +48,16 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(mappedIndividualCustomer);
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
 
-        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(createdIndividualCustomerResponse.getId(), createdIndividualCustomerResponse.getFirstName());
+        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(createdIndividualCustomerResponse.getId(),
+                createdIndividualCustomerResponse.getFirstName(), createdIndividualCustomerResponse.getMiddleName(),
+                createdIndividualCustomerResponse.getLastName(), createdIndividualCustomerResponse.getFatherName(),
+                createdIndividualCustomerResponse.getMotherName());
         customerProducer.sendMessage(customerCreatedEvent);
         return createdIndividualCustomerResponse;
     }
 
     @Override
-    public UpdatedIndividualCustomerResponse update(long id, UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
+    public UpdatedIndividualCustomerResponse update(String id, UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
 //        individualCustomerBusinessRules.individualCustomerNationalityIdentityCanNotBeDuplicatedWhenInserted(updateIndividualCustomerRequest.getNationalityIdentity());
         IndividualCustomer getIndividualCustomerById = findById(id);
         IndividualCustomer mappedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);
@@ -77,7 +80,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
 
     @Override
-    public DeletedIndividualCustomerResponse delete(long id) {
+    public DeletedIndividualCustomerResponse delete(String id) {
 //        individualCustomerBusinessRules.individualCustomerHasBeenDeleted(id);
         IndividualCustomer getIndividualCustomerById = findById(id);
         getIndividualCustomerById.setDeletedDate(LocalDateTime.now());
@@ -97,7 +100,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
 
     @Override
-    public GetIndividualCustomerResponse getById(long id) {
+    public GetIndividualCustomerResponse getById(String id) {
 //        individualCustomerBusinessRules.individualCustomerHasBeenDeleted(id);
 //        individualCustomerBusinessRules.individualCustomerIdIsExist(id);
         IndividualCustomer individualCustomer = findById(id);
@@ -108,7 +111,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
 
     @Override
-    public IndividualCustomer findById(long id) {
+    public IndividualCustomer findById(String id) {
         return individualCustomerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Individual Customer not found"));
     }
 }

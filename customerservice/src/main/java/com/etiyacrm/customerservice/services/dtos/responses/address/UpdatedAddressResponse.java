@@ -18,6 +18,6 @@ public class UpdatedAddressResponse {
     private String street;
     private String houseFlatNumber;
     private int cityId;
-    private int customerId;
-    private LocalDateTime updatedDate;
+    private String customerId;
+//    private LocalDateTime updatedDate;
 }

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -29,5 +30,5 @@ public class UpdateIndividualCustomerRequest {
     @NotBlank(message = "Nationality id cannot be null and only spaces")
     private String nationalityIdentity;
     @NotBlank(message = "Birth date cannot be null")
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 }

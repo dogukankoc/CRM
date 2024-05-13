@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
     @Override
-    public Customer findById(long id) {
+    public Customer findById(String id) {
         return customerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Customer not found"));
     }
 }

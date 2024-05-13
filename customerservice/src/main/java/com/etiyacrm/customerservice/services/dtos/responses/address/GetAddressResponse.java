@@ -15,6 +15,5 @@ public class GetAddressResponse {
     private String street;
     private String houseFlatNumber;
     private int cityId;
-    private int customerId;
-
+    private String customerId;
 }

@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreatedIndividualCustomerResponse {
-    private long id;
-    private long CustomerId;
+    private String id;
+    private String CustomerId;
     private String firstName;
     private String middleName;
     private String lastName;

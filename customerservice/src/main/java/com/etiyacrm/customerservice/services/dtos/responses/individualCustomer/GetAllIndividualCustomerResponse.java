@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetAllIndividualCustomerResponse {
-    private long id;
+    private String id;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -18,6 +19,6 @@ public class GetAllIndividualCustomerResponse {
     private String motherName;
     private String fatherName;
     private String nationalityIdentity;
-    private LocalDateTime birthDate;
-    private LocalDateTime createdDate;
+    private LocalDate birthDate;
+//    private LocalDateTime createdDate;
 }

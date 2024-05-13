@@ -24,14 +24,14 @@ public class IndividualCustomerBusinessRules {
         }
     }
 
-    public void individualCustomerIdIsExist(long id) {
+    public void individualCustomerIdIsExist(String id) {
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);
         if (individualCustomer.isEmpty()) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerIdNotAvailable));
         }
     }
 
-    public void individualCustomerHasBeenDeleted(long id) {
+    public void individualCustomerHasBeenDeleted(String id) {
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);
         if (individualCustomer.get().getDeletedDate() != null) {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.IndividualCustomerHasBeenDeleted));

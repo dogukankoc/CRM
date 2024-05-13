@@ -16,10 +16,15 @@ public class CustomerCreatedConsumer {
     private FilterService filterService;
 
     @KafkaListener(topics = "customer-created", groupId = "create-customer")
-    private void consume(CustomerCreatedEvent customerCreatedEvent){
+    private void consume(CustomerCreatedEvent customerCreatedEvent) {
         Customer customer = new Customer();
+        customer.setCustomerId(customerCreatedEvent.getCustomerId());
         customer.setFirstName(customerCreatedEvent.getFirstName());
+        customer.setMiddleName(customerCreatedEvent.getMiddleName());
+        customer.setLastname(customerCreatedEvent.getLastname());
+        customer.setNationalityIdentity(customerCreatedEvent.getNationalityIdentity());
+        customer.setMobilePhone(customerCreatedEvent.getMobilePhone());
         LOGGER.info(String.format("Customer created event consumer => %s", customerCreatedEvent.toString()));
-        this.filterService.add(customer);
+        filterService.add(customer);
     }
 }

@@ -20,5 +20,5 @@ public class CreateContactMediumRequest {
 
     private String fax;
 
-    private long customerId;
+    private String customerId;
 }
