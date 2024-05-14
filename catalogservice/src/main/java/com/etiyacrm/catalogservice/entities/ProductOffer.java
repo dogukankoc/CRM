@@ -1,6 +1,7 @@
 package com.etiyacrm.catalogservice.entities;
 
 
+import com.etiyacrm.catalogservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.List;
 @Entity
 @Where(clause = "deleted_date IS NULL")
 @Table(name = "campaigns")
-public class ProductOffer {
+public class ProductOffer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
