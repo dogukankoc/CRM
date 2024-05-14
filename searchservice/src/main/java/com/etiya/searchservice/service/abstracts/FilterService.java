@@ -7,6 +7,9 @@ import com.etiya.searchservice.service.dtos.responses.PostSearchCustomerResponse
 import java.util.List;
 
 public interface FilterService {
-    void add(Customer customer);
-    List<PostSearchCustomerResponse> searchCustomers(PostSearchCustomerRequest postSearchCustomerRequest);
+    void addCustomer(Customer customer);
+    List<PostSearchCustomerResponse> search(
+            String nationalityIdentity, String id, String accountNumber,
+            String mobilePhone, String firstName, String lastName, String orderNumber
+    );
 }

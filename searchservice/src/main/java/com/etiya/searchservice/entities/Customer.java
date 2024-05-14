@@ -21,15 +21,21 @@ public class Customer {
     @Field(name = "firstName")
     private String firstName;
 
+    @Field(name = "accountNumber")
+    private String accountNumber;
+
     @Field(name = "middleName")
     private String middleName;
 
     @Field(name = "lastname")
-    private String lastname;
+    private String lastName;
 
     @Field(name = "mobilePhone")
     private String mobilePhone;
 
     @Field(name = "nationalityId")
     private String nationalityIdentity;
+
+    @Field(name = "role")
+    private String role;
 }

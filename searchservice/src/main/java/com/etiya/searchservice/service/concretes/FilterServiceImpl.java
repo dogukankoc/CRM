@@ -22,50 +22,37 @@ public class FilterServiceImpl implements FilterService {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public void add(Customer customer) {
+    public void addCustomer(Customer customer) {
         filterRepository.save(customer);
     }
 
     @Override
-    public List<PostSearchCustomerResponse> searchCustomers(PostSearchCustomerRequest postSearchCustomerRequest) {
+    public List<PostSearchCustomerResponse> search(
+            String nationalityIdentity,
+            String id,
+            String accountNumber,
+            String mobilePhone,
+            String firstName,
+            String lastName,
+            String orderNumber) {
 
-        List<Customer> customers = getFilteredCustomers(postSearchCustomerRequest.getCustomerId(), postSearchCustomerRequest.getNationalityIdentity(),
-                postSearchCustomerRequest.getMobilePhone(), postSearchCustomerRequest.getFirstName(), postSearchCustomerRequest.getLastName());
-        return convertCustomerToResponse(customers);
-    }
+        List<Customer> customers =
+                this.filterRepository.searchResult(
+                        nationalityIdentity, id, mobilePhone, accountNumber, firstName, lastName, orderNumber
+                );
+        List<PostSearchCustomerResponse> searchResponses = new ArrayList<>();
 
-
-    public List<Customer> getFilteredCustomers(String customerId, String nationalityId, String mobilePhone, String firstName, String lastName) {
-        Query query = new Query();
-
-        addCriteriaIfNotNullOrEmpty(query, "customerId", customerId);
-        addCriteriaIfNotNullOrEmpty(query, "nationalityId", nationalityId);
-        addCriteriaIfNotNullOrEmpty(query, "mobilePhone", mobilePhone);
-        addCriteriaIfNotNullOrEmpty(query, "firstName", firstName);
-        addCriteriaIfNotNullOrEmpty(query, "lastName", lastName);
-
-        return mongoTemplate.find(query, Customer.class);
-    }
-
-    private void addCriteriaIfNotNullOrEmpty(Query query, String field, String value) {
-        if (value != null && !value.isEmpty()) {
-            query.addCriteria(Criteria.where(field).is(value));
-        }
-    }
-
-    private List<PostSearchCustomerResponse> convertCustomerToResponse(List<Customer> customers) {
-        List<PostSearchCustomerResponse> filteredCustomers = new ArrayList<>();
         for (Customer customer : customers) {
-            PostSearchCustomerResponse postSearchCustomerResponse = new PostSearchCustomerResponse();
-            postSearchCustomerResponse.setCustomerId(customer.getCustomerId());
-            postSearchCustomerResponse.setNationalityId(customer.getNationalityIdentity());
-            postSearchCustomerResponse.setAccountNumber("1234567");
-            postSearchCustomerResponse.setMobilePhone(customer.getMobilePhone());
-            postSearchCustomerResponse.setFirstName(customer.getFirstName());
-            postSearchCustomerResponse.setLastName(customer.getLastname());
-            postSearchCustomerResponse.setOrderNumber("987654");
-            filteredCustomers.add(postSearchCustomerResponse);
+            PostSearchCustomerResponse searchResponse = new PostSearchCustomerResponse();
+            searchResponse.setCustomerId(customer.getCustomerId());
+            searchResponse.setFirstName(customer.getFirstName());
+            searchResponse.setLastName(customer.getLastName());
+            searchResponse.setRole(customer.getRole());
+            searchResponse.setNationalityIdentity(customer.getNationalityIdentity());
+            searchResponse.setAccountNumber(customer.getAccountNumber());
+            searchResponse.setMobilePhone(customer.getMobilePhone());
+            searchResponses.add(searchResponse);
         }
-        return filteredCustomers;
+        return searchResponses;
     }
-}
+    }
