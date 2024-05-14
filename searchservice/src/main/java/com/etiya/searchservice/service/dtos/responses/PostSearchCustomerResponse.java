@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PostSearchCustomerResponse {
     String customerId;
-    String nationalityId;
+    String nationalityIdentity;
     String accountNumber;
     String mobilePhone;
     String firstName;
     String lastName;
     String orderNumber;
+    String role;
 }
