@@ -13,7 +13,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="crmcatalog@localhost" uuid="95e5f83f-a98c-40d1-8b8e-75514560ef30">
+    <data-source source="LOCAL" name="crmcatalog@localhost" uuid="d542d9b1-b50c-4eae-acdb-a316679566d9">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

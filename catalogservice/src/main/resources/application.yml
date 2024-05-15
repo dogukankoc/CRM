@@ -9,24 +9,5 @@ spring:
       profile: dev
   config:
     import: configserver:http://localhost:8050/
-    spring:
-      datasource:
-        url: jdbc:postgresql://localhost:5432/crmcustomer
-        username: postgres
-        password: test1234
-        driver-class-name: org.postgresql.Driver
-        jpa:
-          database-platform: org.hibernate.dialect.PostgreSQLDialect
-          hibernate:
-            ddl-auto: create
-          show-sql: true
-    eureka:
-      client:
-        fetchRegistry: true
-        registerWithEureka: true
-        serviceUrl:
-          defaultZone: http://localhost:8888/eureka
-      instance:
-        instance-id: ${spring.application.name}:${instanceId:${random.value}}
-        preferIpAddress: true
+
 
