@@ -16,7 +16,7 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="crmcatalog@localhost" uuid="95e5f83f-a98c-40d1-8b8e-75514560ef30">
+    <data-source name="crmcatalog@localhost" uuid="d542d9b1-b50c-4eae-acdb-a316679566d9">
       <database-info product="PostgreSQL" version="16.3 (Debian 16.3-1.pgdg120+1)" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.3" exact-driver-version="42.6">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
