@@ -16,25 +16,25 @@ public class FilterRepositoryCustomImpl implements FilterRepositoryCustom{
             (String nationalityIdentity, String customerId, String mobilePhone, String accountNumber, String firstName, String lastName, String orderNumber) {
         Query query = new Query();
         if (nationalityIdentity != null) {
-            query.addCriteria(Criteria.where("nationalityIdentity").is(nationalityIdentity));
+            query.addCriteria(Criteria.where("nationalityIdentity").regex(nationalityIdentity));
         }
         if (customerId != null) {
-            query.addCriteria(Criteria.where("customerId").is(customerId));
+            query.addCriteria(Criteria.where("customerId").regex(customerId));
         }
         if (mobilePhone != null) {
-            query.addCriteria(Criteria.where("mobilePhone").is(mobilePhone));
+            query.addCriteria(Criteria.where("mobilePhone").regex(mobilePhone));
         }
         if (accountNumber != null) {
-            query.addCriteria(Criteria.where("accountNumber").is(accountNumber));
+            query.addCriteria(Criteria.where("accountNumber").regex(accountNumber));
         }
         if (firstName != null) {
-            query.addCriteria(Criteria.where("firstName").is(firstName));
+            query.addCriteria(Criteria.where("firstName").regex(firstName));
         }
         if (lastName != null) {
-            query.addCriteria(Criteria.where("lastName").is(lastName));
+            query.addCriteria(Criteria.where("lastName").regex(lastName));
         }
         if (orderNumber != null) {
-            query.addCriteria(Criteria.where("orderNumber").is(orderNumber));
+            query.addCriteria(Criteria.where("orderNumber").regex(orderNumber));
         }
         return mongoTemplate.find(query, Customer.class);
     }
