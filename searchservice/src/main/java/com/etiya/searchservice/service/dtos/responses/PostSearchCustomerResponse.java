@@ -14,6 +14,7 @@ public class PostSearchCustomerResponse {
     String mobilePhone;
     String firstName;
     String lastName;
+    String middleName;
     String orderNumber;
     String role;
 }

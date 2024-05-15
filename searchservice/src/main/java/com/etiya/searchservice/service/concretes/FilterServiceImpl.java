@@ -47,6 +47,7 @@ public class FilterServiceImpl implements FilterService {
             searchResponse.setCustomerId(customer.getCustomerId());
             searchResponse.setFirstName(customer.getFirstName());
             searchResponse.setLastName(customer.getLastName());
+            searchResponse.setMiddleName(customer.getMiddleName());
             searchResponse.setRole(customer.getRole());
             searchResponse.setNationalityIdentity(customer.getNationalityIdentity());
             searchResponse.setAccountNumber(customer.getAccountNumber());

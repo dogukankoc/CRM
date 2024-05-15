@@ -15,5 +15,4 @@ public class PostSearchCustomerRequest {
     String firstName;
     String lastName;
     String orderNumber;
-    String role;
 }

@@ -48,10 +48,14 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         IndividualCustomer createdIndividualCustomer = individualCustomerRepository.save(mappedIndividualCustomer);
         CreatedIndividualCustomerResponse createdIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.createdIndividualCustomerResponseFromIndividualCustomer(createdIndividualCustomer);
         createdIndividualCustomerResponse.setCustomerId(createdIndividualCustomer.getCustomer().getId());
-        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(createdIndividualCustomerResponse.getId(),
-                createdIndividualCustomerResponse.getFirstName(), createdIndividualCustomerResponse.getMiddleName(),
-                createdIndividualCustomerResponse.getLastName(), createdIndividualCustomerResponse.getFatherName(),
-                createdIndividualCustomerResponse.getMotherName());
+        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(
+                createdIndividualCustomerResponse.getCustomerId(),
+                createdIndividualCustomerResponse.getFirstName(),
+                createdIndividualCustomerResponse.getMiddleName(),
+                createdIndividualCustomerResponse.getLastName(),
+                createdIndividualCustomerResponse.getFatherName(),
+                createdIndividualCustomerResponse.getNationalityIdentity()
+        );
         customerProducer.sendMessage(customerCreatedEvent);
         return createdIndividualCustomerResponse;
     }
