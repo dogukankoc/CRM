@@ -28,10 +28,10 @@ public class FilterRepositoryCustomImpl implements FilterRepositoryCustom{
             query.addCriteria(Criteria.where("accountNumber").regex(accountNumber));
         }
         if (firstName != null) {
-            query.addCriteria(Criteria.where("firstName").regex(firstName));
+            query.addCriteria(Criteria.where("firstName").regex(firstName,"i"));
         }
         if (lastName != null) {
-            query.addCriteria(Criteria.where("lastName").regex(lastName));
+            query.addCriteria(Criteria.where("lastName").regex(lastName,"i"));
         }
         if (orderNumber != null) {
             query.addCriteria(Criteria.where("orderNumber").regex(orderNumber));
