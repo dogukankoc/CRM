@@ -10,9 +10,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface CatalogMapper {
     CatalogMapper INSTANCE = Mappers.getMapper(CatalogMapper.class);
-
     GetAllCatalogResponse getAllCatalogResponseFromCatalog(Catalog catalog);
-
     Catalog catalogFromCreateCatalogRequest(CreateCatalogRequest createCatalogRequest);
     CreatedCatalogResponse createdCatalogResponseFromCatalog(Catalog catalog);
     Catalog catalogFromUpdateCatalogRequest(UpdateCatalogRequest updateCatalogRequest);

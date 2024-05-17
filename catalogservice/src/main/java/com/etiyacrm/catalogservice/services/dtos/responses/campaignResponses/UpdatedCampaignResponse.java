@@ -12,5 +12,4 @@ public class UpdatedCampaignResponse {
     private String name;
     private String description;
     private String code;
-    private String productId;
 }

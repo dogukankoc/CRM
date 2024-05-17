@@ -10,11 +10,8 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface CampaignMapper {
     CampaignMapper INSTANCE = Mappers.getMapper(CampaignMapper.class);
-
     GetAllCampaignResponse getAllCampaignResponseFromCampaign(Campaign campaign);
-
     Campaign campaignFromCreateCampaignRequest(CreateCampaignRequest createCampaignRequest);
-
     CreatedCampaignResponse createdCampaignResponseFromCampaign(Campaign campaign);
     Campaign campaignFromUpdateCampaignRequest(UpdateCampaignRequest updateCampaignRequest);
     UpdatedCampaignResponse updatedCampaignResponseFromCampaign(Campaign campaign);
