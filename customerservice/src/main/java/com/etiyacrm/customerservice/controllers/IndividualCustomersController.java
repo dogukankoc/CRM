@@ -31,7 +31,7 @@ public class IndividualCustomersController {
     @ResponseStatus(HttpStatus.OK)
     public List<GetAllIndividualCustomerResponse> getAll(){
 
-        return individualCustomerService.getAll(new PageInfo());
+        return individualCustomerService.getAll();
     }
 
     @PostMapping

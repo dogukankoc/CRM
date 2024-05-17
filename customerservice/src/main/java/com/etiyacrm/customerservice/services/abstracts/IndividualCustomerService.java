@@ -13,6 +13,6 @@ public interface IndividualCustomerService {
     UpdatedIndividualCustomerResponse update(String id, UpdateIndividualCustomerRequest updateIndividualCustomerRequest);
     IndividualCustomer findById(String id);
     DeletedIndividualCustomerResponse delete(String id);
-    List<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo);
+    List<GetAllIndividualCustomerResponse> getAll();
     GetIndividualCustomerResponse getById(String id);
 }

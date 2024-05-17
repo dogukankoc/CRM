@@ -13,6 +13,6 @@ public interface AddressService {
     UpdatedAddressResponse update(long id, UpdateAddressRequest updateAddressRequest);
     Address findById(long id);
     DeletedAddressResponse delete(long id);
-    List<GetAllAddressResponse> getAll(PageInfo pageInfo);
+    List<GetAllAddressResponse> getAll();
     GetAddressResponse getById(long id);
 }

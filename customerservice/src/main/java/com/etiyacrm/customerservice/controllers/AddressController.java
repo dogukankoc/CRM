@@ -30,7 +30,7 @@ public class AddressController {
     @ResponseStatus(HttpStatus.OK)
     public List<GetAllAddressResponse> getAll() {
 
-        return addressService.getAll(new PageInfo());
+        return addressService.getAll();
     }
 
     @PostMapping

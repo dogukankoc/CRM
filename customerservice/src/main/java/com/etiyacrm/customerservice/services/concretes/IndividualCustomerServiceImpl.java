@@ -97,10 +97,14 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
 
     @Override
-    public List<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
-        Page<IndividualCustomer> response = individualCustomerRepository.findAll(pageable);
-        return response.stream().filter(individualCustomer -> individualCustomer.getDeletedDate() == null).map(individualCustomer -> IndividualCustomerMapper.INSTANCE.getAllIndividualCustomerResponseFromIndividualCustomer(individualCustomer)).collect(Collectors.toList());
+    public List<GetAllIndividualCustomerResponse> getAll() {
+        List<IndividualCustomer> customers = individualCustomerRepository.findAll();
+        return customers.stream().filter(customer -> customer.getDeletedDate() == null)
+                .map(customer -> IndividualCustomerMapper.INSTANCE.getAllIndividualCustomerResponseFromIndividualCustomer(customer))
+                .collect(Collectors.toList());
+//        Pageable pageable = PageRequest.of(pageInfo.getPage(), pageInfo.getSize());
+//        Page<IndividualCustomer> response = individualCustomerRepository.findAll(pageable);
+//        return response.stream().filter(individualCustomer -> individualCustomer.getDeletedDate() == null).map(individualCustomer -> IndividualCustomerMapper.INSTANCE.getAllIndividualCustomerResponseFromIndividualCustomer(individualCustomer)).collect(Collectors.toList());
     }
 
     @Override
