@@ -11,9 +11,9 @@
 4||10|c|G
 4||10|C|G
 4||10|T|G</Grants>
-      <IntrospectionStateNumber>787</IntrospectionStateNumber>
+      <IntrospectionStateNumber>804</IntrospectionStateNumber>
       <ServerVersion>16.3</ServerVersion>
-      <StartupTime>1715886394</StartupTime>
+      <StartupTime>1715978485</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -1407,7 +1407,7 @@ true posixrules
 13212||10|C|G
 13212||-9223372036854775808|U|G
 13212||10|U|G</Grants>
-      <IntrospectionStateNumber>787</IntrospectionStateNumber>
+      <IntrospectionStateNumber>804</IntrospectionStateNumber>
       <ObjectId>16384</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4831,86 +4831,186 @@ true posixrules
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>787</IntrospectionStateNumber>
-      <LastIntrospectionLocalTimestamp>2024-05-16.19:09:40</LastIntrospectionLocalTimestamp>
+      <IntrospectionStateNumber>804</IntrospectionStateNumber>
+      <LastIntrospectionLocalTimestamp>2024-05-17.21:07:32</LastIntrospectionLocalTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <table id="265" parent="264" name="campaigns">
+    <table id="265" parent="264" name="campaign_product_offers">
+      <ObjectId>16425</ObjectId>
+      <StateNumber>798</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="266" parent="264" name="campaigns">
       <ObjectId>16389</ObjectId>
       <StateNumber>751</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="266" parent="264" name="catalogs">
+    <table id="267" parent="264" name="catalog_product_offers">
+      <ObjectId>16432</ObjectId>
+      <StateNumber>800</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="268" parent="264" name="catalogs">
       <ObjectId>16396</ObjectId>
       <StateNumber>747</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="267" parent="264" name="products">
-      <ObjectId>16403</ObjectId>
-      <StateNumber>746</StateNumber>
+    <table id="269" parent="264" name="general_characteristic">
+      <ObjectId>16439</ObjectId>
+      <StateNumber>802</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="268" parent="265" name="created_date">
+    <table id="270" parent="264" name="general_characteristic_value">
+      <ObjectId>16446</ObjectId>
+      <StateNumber>802</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="271" parent="264" name="product_offers">
+      <ObjectId>16453</ObjectId>
+      <StateNumber>799</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <table id="272" parent="264" name="products">
+      <ObjectId>16403</ObjectId>
+      <StateNumber>797</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="273" parent="265" name="id">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>788</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="274" parent="265" name="created_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>788</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="275" parent="265" name="deleted_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>788</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="276" parent="265" name="updated_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>788</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="277" parent="265" name="campaign_id">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>788</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="278" parent="265" name="product_offer_id">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>788</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="279" parent="265" name="fkrrl0122wrby2mv30iwpe7v6fs">
+      <ColNames>campaign_id</ColNames>
+      <ObjectId>16460</ObjectId>
+      <StateNumber>798</StateNumber>
+      <RefKeyColPositions>6</RefKeyColPositions>
+      <RefTableId>16389</RefTableId>
+    </foreign-key>
+    <foreign-key id="280" parent="265" name="fk145k7oulcxxt3jr63yiifvxim">
+      <ColNames>product_offer_id</ColNames>
+      <ObjectId>16465</ObjectId>
+      <StateNumber>799</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16453</RefTableId>
+    </foreign-key>
+    <index id="281" parent="265" name="campaign_product_offers_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16430</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>788</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="282" parent="265" name="campaign_product_offers_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16431</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>788</StateNumber>
+      <UnderlyingIndexId>16430</UnderlyingIndexId>
+    </key>
+    <column id="283" parent="266" name="created_date">
       <DasType>timestamp(6)|0s</DasType>
       <Position>1</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="269" parent="265" name="deleted_date">
+    <column id="284" parent="266" name="deleted_date">
       <DasType>timestamp(6)|0s</DasType>
       <Position>2</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="270" parent="265" name="updated_date">
+    <column id="285" parent="266" name="updated_date">
       <DasType>timestamp(6)|0s</DasType>
       <Position>3</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="271" parent="265" name="code">
+    <column id="286" parent="266" name="code">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="272" parent="265" name="description">
+    <column id="287" parent="266" name="description">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="273" parent="265" name="id">
+    <column id="288" parent="266" name="id">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="274" parent="265" name="name">
+    <column id="289" parent="266" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>7</Position>
       <StateNumber>743</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="275" parent="265" name="discount">
+    <column id="290" parent="266" name="discount">
       <DasType>varchar(255)|0s</DasType>
       <Position>8</Position>
       <StateNumber>750</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="276" parent="265" name="price">
+    <column id="291" parent="266" name="price">
       <DasType>double precision|0s</DasType>
       <Position>9</Position>
       <StateNumber>751</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <index id="277" parent="265" name="campaigns_pkey">
+    <index id="292" parent="266" name="campaigns_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16394</ObjectId>
@@ -4922,45 +5022,115 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="278" parent="265" name="campaigns_pkey">
+    <key id="293" parent="266" name="campaigns_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16395</ObjectId>
       <Primary>1</Primary>
       <StateNumber>743</StateNumber>
       <UnderlyingIndexId>16394</UnderlyingIndexId>
     </key>
-    <column id="279" parent="266" name="created_date">
+    <column id="294" parent="267" name="id">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>789</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="295" parent="267" name="created_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>789</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="296" parent="267" name="deleted_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>789</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="297" parent="267" name="updated_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>789</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="298" parent="267" name="catalog_id">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>789</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="299" parent="267" name="product_offer_id">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>789</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="300" parent="267" name="fknx7omhcwgyejlajjdlketocsu">
+      <ColNames>catalog_id</ColNames>
+      <ObjectId>16470</ObjectId>
+      <StateNumber>800</StateNumber>
+      <RefKeyColPositions>4</RefKeyColPositions>
+      <RefTableId>16396</RefTableId>
+    </foreign-key>
+    <foreign-key id="301" parent="267" name="fkkpe5c7r1j1vagq8fgriq4l6ea">
+      <ColNames>product_offer_id</ColNames>
+      <ObjectId>16475</ObjectId>
+      <StateNumber>801</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16453</RefTableId>
+    </foreign-key>
+    <index id="302" parent="267" name="catalog_product_offers_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16437</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>789</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="303" parent="267" name="catalog_product_offers_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16438</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>789</StateNumber>
+      <UnderlyingIndexId>16437</UnderlyingIndexId>
+    </key>
+    <column id="304" parent="268" name="created_date">
       <DasType>timestamp(6)|0s</DasType>
       <Position>1</Position>
       <StateNumber>744</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="280" parent="266" name="deleted_date">
+    <column id="305" parent="268" name="deleted_date">
       <DasType>timestamp(6)|0s</DasType>
       <Position>2</Position>
       <StateNumber>744</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="281" parent="266" name="updated_date">
+    <column id="306" parent="268" name="updated_date">
       <DasType>timestamp(6)|0s</DasType>
       <Position>3</Position>
       <StateNumber>744</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="282" parent="266" name="id">
+    <column id="307" parent="268" name="id">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>744</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="283" parent="266" name="name">
+    <column id="308" parent="268" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
       <StateNumber>744</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="284" parent="266" name="catalogs_pkey">
+    <index id="309" parent="268" name="catalogs_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16401</ObjectId>
@@ -4972,60 +5142,290 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="285" parent="266" name="catalogs_pkey">
+    <key id="310" parent="268" name="catalogs_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16402</ObjectId>
       <Primary>1</Primary>
       <StateNumber>744</StateNumber>
       <UnderlyingIndexId>16401</UnderlyingIndexId>
     </key>
-    <column id="286" parent="267" name="campaign_id">
+    <column id="311" parent="269" name="id">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>790</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="312" parent="269" name="created_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>790</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="313" parent="269" name="deleted_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>790</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="314" parent="269" name="updated_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>790</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="315" parent="269" name="description">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>790</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="316" parent="269" name="name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>790</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="317" parent="269" name="general_characteristic_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16444</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>790</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="318" parent="269" name="general_characteristic_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16445</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>790</StateNumber>
+      <UnderlyingIndexId>16444</UnderlyingIndexId>
+    </key>
+    <column id="319" parent="270" name="id">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>791</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="320" parent="270" name="created_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>791</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="321" parent="270" name="deleted_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>791</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="322" parent="270" name="updated_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>791</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="323" parent="270" name="is_active">
+      <DasType>boolean|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>791</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="324" parent="270" name="value">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>791</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="325" parent="270" name="characteristic_id">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>791</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="326" parent="270" name="fk2bj26aiy88ilyelbx0mv6up9n">
+      <ColNames>characteristic_id</ColNames>
+      <ObjectId>16480</ObjectId>
+      <StateNumber>802</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16439</RefTableId>
+    </foreign-key>
+    <index id="327" parent="270" name="general_characteristic_value_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16451</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>791</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="328" parent="270" name="general_characteristic_value_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16452</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>791</StateNumber>
+      <UnderlyingIndexId>16451</UnderlyingIndexId>
+    </key>
+    <column id="329" parent="271" name="id">
+      <DasType>varchar(255)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>792</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="330" parent="271" name="created_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>792</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="331" parent="271" name="deleted_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>3</Position>
+      <StateNumber>792</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="332" parent="271" name="updated_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>4</Position>
+      <StateNumber>792</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="333" parent="271" name="description">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>792</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="334" parent="271" name="name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>792</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="335" parent="271" name="price">
+      <DasType>double precision|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>792</StateNumber>
+      <TypeId>701</TypeId>
+    </column>
+    <column id="336" parent="271" name="product_id">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+      <StateNumber>792</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="337" parent="271" name="fks180nt5ctgqb9kjsk8av5fsr9">
+      <ColNames>product_id</ColNames>
+      <ObjectId>16485</ObjectId>
+      <StateNumber>803</StateNumber>
+      <RefKeyColPositions>3</RefKeyColPositions>
+      <RefTableId>16403</RefTableId>
+    </foreign-key>
+    <index id="338" parent="271" name="product_offers_pkey">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16458</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>792</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="339" parent="271" name="product_offers_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16459</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>792</StateNumber>
+      <UnderlyingIndexId>16458</UnderlyingIndexId>
+    </key>
+    <column id="340" parent="272" name="campaign_id">
       <DasType>varchar(255)|0s</DasType>
       <Position>1</Position>
       <StateNumber>745</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="287" parent="267" name="catalog_id">
+    <column id="341" parent="272" name="catalog_id">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>745</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="288" parent="267" name="id">
+    <column id="342" parent="272" name="id">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>745</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="289" parent="267" name="product_offer_id">
+    <column id="343" parent="272" name="product_offer_id">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
       <StateNumber>745</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <foreign-key id="290" parent="267" name="fk3sak3oud57mcfd4xc3huoh94n">
+    <column id="344" parent="272" name="created_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>5</Position>
+      <StateNumber>793</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="345" parent="272" name="deleted_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>6</Position>
+      <StateNumber>794</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="346" parent="272" name="updated_date">
+      <DasType>timestamp(6)|0s</DasType>
+      <Position>7</Position>
+      <StateNumber>795</StateNumber>
+      <TypeId>1114</TypeId>
+    </column>
+    <column id="347" parent="272" name="description">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+      <StateNumber>796</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="348" parent="272" name="name">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>9</Position>
+      <StateNumber>797</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="349" parent="272" name="fk3sak3oud57mcfd4xc3huoh94n">
       <ColNames>campaign_id</ColNames>
       <ObjectId>16410</ObjectId>
       <StateNumber>746</StateNumber>
       <RefKeyColPositions>6</RefKeyColPositions>
       <RefTableId>16389</RefTableId>
     </foreign-key>
-    <foreign-key id="291" parent="267" name="fkr9g72vsfwc9lupwutnut4w7kf">
+    <foreign-key id="350" parent="272" name="fkr9g72vsfwc9lupwutnut4w7kf">
       <ColNames>catalog_id</ColNames>
       <ObjectId>16415</ObjectId>
       <StateNumber>747</StateNumber>
       <RefKeyColPositions>4</RefKeyColPositions>
       <RefTableId>16396</RefTableId>
     </foreign-key>
-    <foreign-key id="292" parent="267" name="fkk0ots6rjowb6wfmjh20v6ffc">
+    <foreign-key id="351" parent="272" name="fkk0ots6rjowb6wfmjh20v6ffc">
       <ColNames>product_offer_id</ColNames>
       <ObjectId>16420</ObjectId>
       <StateNumber>748</StateNumber>
       <RefKeyColPositions>6</RefKeyColPositions>
       <RefTableId>16389</RefTableId>
     </foreign-key>
-    <index id="293" parent="267" name="products_pkey">
+    <index id="352" parent="272" name="products_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16408</ObjectId>
@@ -5037,7 +5437,7 @@ true posixrules
       <CollationIds>100</CollationIds>
       <CollationParentNames>pg_catalog</CollationParentNames>
     </index>
-    <key id="294" parent="267" name="products_pkey">
+    <key id="353" parent="272" name="products_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16409</ObjectId>
       <Primary>1</Primary>
