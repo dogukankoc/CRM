@@ -1,13 +1,12 @@
 package com.etiyacrm.customerservice.controllers;
 
-import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
+import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CheckNationalityIdentityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,14 +22,14 @@ public class IndividualCustomersController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GetIndividualCustomerResponse getById(@PathVariable String id){
+    public GetIndividualCustomerResponse getById(@PathVariable String id) {
 
         return individualCustomerService.getById(id);
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<GetAllIndividualCustomerResponse> getAll(){
+    public List<GetAllIndividualCustomerResponse> getAll() {
 
         return individualCustomerService.getAll();
     }
@@ -57,5 +56,11 @@ public class IndividualCustomersController {
     @ResponseStatus(HttpStatus.OK)
     public Boolean checkNationalityIdentity(@PathVariable @Valid String nationalityIdentity) {
         return individualCustomerService.checkByNationalityIdentity(nationalityIdentity);
+    }
+
+    @PostMapping("/nationality-identity/check")
+    @ResponseStatus(HttpStatus.OK)
+    public Boolean checkNationalIdentityExists(@RequestBody CheckNationalityIdentityRequest checkNationalityIdentityRequest) throws Exception {
+       return individualCustomerService.checkIfNationalIdentityExists(checkNationalityIdentityRequest);
     }
 }

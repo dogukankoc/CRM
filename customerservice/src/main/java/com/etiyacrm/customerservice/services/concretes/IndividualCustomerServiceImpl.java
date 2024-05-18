@@ -1,9 +1,11 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
+import com.etiyacrm.customerservice.adapters.CustomerCheckService;
 import com.etiyacrm.customerservice.kafka.producers.CustomerProducer;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
 import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
+import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CheckNationalityIdentityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
@@ -35,6 +37,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     private CustomerService customerService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private CustomerProducer customerProducer;
+
 
 
     @Override
@@ -83,7 +86,6 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     }
 
 
-
     @Override
     public DeletedIndividualCustomerResponse delete(String id) {
 //        individualCustomerBusinessRules.individualCustomerHasBeenDeleted(id);
@@ -123,11 +125,18 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         return individualCustomerBusinessRules.individualCustomerNationalityIdentityCanNotBeDuplicatedWhenInsertedForClient(nationalityIdentity);
     }
 
+    @Override
+    public Boolean checkIfNationalIdentityExists(CheckNationalityIdentityRequest checkNationalityIdentityRequest) throws Exception {
+    return individualCustomerBusinessRules.checkIfNationalIdentityExists(checkNationalityIdentityRequest);
+    }
+
 
     @Override
     public IndividualCustomer findById(String id) {
         return individualCustomerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Individual Customer not found"));
     }
+
+
 }
 
 

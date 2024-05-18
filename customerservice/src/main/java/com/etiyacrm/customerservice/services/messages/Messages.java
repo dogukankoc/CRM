@@ -13,5 +13,7 @@ public class Messages {
         public static final String IndividualCustomerIdNotAvailable = "individualCustomerIdNotAvailable";
         public static final String IndividualCustomerHasBeenDeleted = "individualCustomerHasBeenDeleted";
 
+        public static final String IdentityNumberNotExists = "identityNumberNotExists";
+
     }
 }

@@ -1,6 +1,7 @@
 package com.etiyacrm.customerservice.services.abstracts;
 
 import com.etiyacrm.customerservice.core.business.paging.PageInfo;
+import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CheckNationalityIdentityRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.CreateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.UpdateIndividualCustomerRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
@@ -16,4 +17,5 @@ public interface IndividualCustomerService {
     List<GetAllIndividualCustomerResponse> getAll();
     GetIndividualCustomerResponse getById(String id);
     Boolean checkByNationalityIdentity(String nationalityIdentity);
+    public Boolean checkIfNationalIdentityExists(CheckNationalityIdentityRequest checkNationalityIdentityRequest) throws Exception;
 }
