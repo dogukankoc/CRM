@@ -7,6 +7,7 @@ import com.etiyacrm.customerservice.services.dtos.requests.individualCustomer.Up
 import com.etiyacrm.customerservice.services.dtos.responses.individualCustomer.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,5 +51,11 @@ public class IndividualCustomersController {
     @ResponseStatus(HttpStatus.OK)
     public DeletedIndividualCustomerResponse delete(@PathVariable String id) {
         return individualCustomerService.delete(id);
+    }
+
+    @GetMapping("/nationality-identity/{nationalityIdentity}")
+    @ResponseStatus(HttpStatus.OK)
+    public Boolean checkNationalityIdentity(@PathVariable @Valid String nationalityIdentity) {
+        return individualCustomerService.checkByNationalityIdentity(nationalityIdentity);
     }
 }

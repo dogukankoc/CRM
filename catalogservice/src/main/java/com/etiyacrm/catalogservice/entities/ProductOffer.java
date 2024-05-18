@@ -25,10 +25,10 @@ public class ProductOffer extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "description") //Gereksiz olabilir
     private String description;
 
-    @Column(name = "code")
+    @Column(name = "code") //Gereksiz olabilir
     private String code;
 
     @OneToMany(mappedBy = "campaign")

@@ -1,13 +1,16 @@
 package com.etiyacrm.customerservice.services.concretes;
 
+import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
 import com.etiyacrm.customerservice.core.crossCusttingConcerns.types.BusinessException;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.Customer;
 import com.etiyacrm.customerservice.entities.IndividualCustomer;
+import com.etiyacrm.customerservice.kafka.producers.CustomerProducer;
 import com.etiyacrm.customerservice.repositories.ContactMediumRepository;
 import com.etiyacrm.customerservice.services.abstracts.ContactMediumService;
 import com.etiyacrm.customerservice.services.abstracts.CustomerService;
+import com.etiyacrm.customerservice.services.abstracts.IndividualCustomerService;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.CreateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.requests.contactMedium.UpdateContactMediumRequest;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.CreatedContactMediumResponse;
@@ -25,6 +28,8 @@ import java.time.LocalDateTime;
 public class ContactMediumServiceImpl implements ContactMediumService {
     private ContactMediumRepository contactMediumRepository;
     private CustomerService customerService;
+    private CustomerProducer customerProducer;
+    private IndividualCustomerService individualCustomerService;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
@@ -35,6 +40,18 @@ public class ContactMediumServiceImpl implements ContactMediumService {
         ContactMedium createdContactMedium = contactMediumRepository.save(contactMedium);
         CreatedContactMediumResponse createdContactMediumResponse = ContactMediumMapper.INSTANCE.createdContactMediumResponseFromContactMedium(createdContactMedium);
 
+//        IndividualCustomer individualCustomer = individualCustomerService.findById(customer.getId());
+//
+//
+//        CustomerCreatedEvent customerCreatedEvent = new CustomerCreatedEvent(
+//                createdContactMediumResponse
+//                createdIndividualCustomerResponse.getFirstName(),
+//                createdIndividualCustomerResponse.getMiddleName(),
+//                createdIndividualCustomerResponse.getLastName(),
+//                createdIndividualCustomerResponse.getFatherName(),
+//                createdIndividualCustomerResponse.getNationalityIdentity()
+//        );
+//        customerProducer.sendMessage(customerCreatedEvent);
         return createdContactMediumResponse;
     }
 

@@ -23,6 +23,16 @@ public class IndividualCustomerBusinessRules {
             throw new BusinessException(messageService.getMessage(Messages.BusinessErrors.NationalityIdentityExists));
         }
     }
+    public Boolean individualCustomerNationalityIdentityCanNotBeDuplicatedWhenInsertedForClient(String nationalityIdentity) {
+        Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findByNationalityIdentityIgnoreCase(nationalityIdentity);
+
+        if (individualCustomer.isPresent()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     public void individualCustomerIdIsExist(String id) {
         Optional<IndividualCustomer> individualCustomer = individualCustomerRepository.findById(id);

@@ -24,6 +24,7 @@ import com.etiyacrm.customerservice.core.business.paging.PageInfo;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -111,6 +112,11 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         GetIndividualCustomerResponse getIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
 //        getIndividualCustomerResponse.setEmail(individualCustomer.getCustomer().getEmail());
         return getIndividualCustomerResponse;
+    }
+
+    @Override
+    public Boolean checkByNationalityIdentity(String nationalityIdentity) {
+        return individualCustomerBusinessRules.individualCustomerNationalityIdentityCanNotBeDuplicatedWhenInsertedForClient(nationalityIdentity);
     }
 
 

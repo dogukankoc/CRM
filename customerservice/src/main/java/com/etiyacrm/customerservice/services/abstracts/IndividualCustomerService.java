@@ -15,4 +15,5 @@ public interface IndividualCustomerService {
     DeletedIndividualCustomerResponse delete(String id);
     List<GetAllIndividualCustomerResponse> getAll(PageInfo pageInfo);
     GetIndividualCustomerResponse getById(String id);
+    Boolean checkByNationalityIdentity(String nationalityIdentity);
 }

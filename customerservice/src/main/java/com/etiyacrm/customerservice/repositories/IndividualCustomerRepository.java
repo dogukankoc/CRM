@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface IndividualCustomerRepository extends JpaRepository<IndividualCustomer,String> {
     Optional<IndividualCustomer> findByNationalityIdentityIgnoreCase(String nationalityIdentity);
-
 }
