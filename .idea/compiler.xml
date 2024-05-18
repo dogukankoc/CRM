@@ -14,6 +14,7 @@
         <module name="ConfigServer" />
         <module name="GatewayServer" />
         <module name="Gateway-Server" />
+        <module name="basketservice" />
         <module name="searchservice" />
       </profile>
       <profile name="Annotation profile for customerservice" enabled="true">
@@ -35,6 +36,7 @@
       <module name="ConfigServer" options="-parameters" />
       <module name="Gateway-Server" options="-parameters" />
       <module name="GatewayServer" options="-parameters" />
+      <module name="basketservice" options="-parameters" />
       <module name="catalogservice" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="customerservice" options="-parameters" />
