@@ -8,4 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdatedProductResponse {
     private String id;
+    private String name;
+    private String description;
 }

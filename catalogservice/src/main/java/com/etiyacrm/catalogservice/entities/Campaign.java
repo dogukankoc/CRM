@@ -31,5 +31,5 @@ public class Campaign extends BaseEntity {
     private String code;
 
     @OneToMany(mappedBy = "campaign")
-    private List<Product> products;
+    private List<CampaignProductOffer> campaignProductOffers;
 }

@@ -71,10 +71,14 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<GetAllAddressResponse> getAll(PageInfo pageInfo) {
-        Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
-        Page<Address> response = addressRepository.findAll(pageable);
-        return response.stream().filter(address -> address.getDeletedDate() == null).map(address -> AddressMapper.INSTANCE.getAllAddressResponseFromAddress(address)).collect(Collectors.toList());
+    public List<GetAllAddressResponse> getAll() {
+        List<Address> addresses = addressRepository.findAll();
+        return addresses.stream().filter(address -> address.getDeletedDate() == null)
+                .map(address -> AddressMapper.INSTANCE.getAllAddressResponseFromAddress(address))
+                .collect(Collectors.toList());
+//        Pageable pageable = PageRequest.of(pageInfo.getPage(),pageInfo.getSize());
+//        Page<Address> response = addressRepository.findAll(pageable);
+//        return response.stream().filter(address -> address.getDeletedDate() == null).map(address -> AddressMapper.INSTANCE.getAllAddressResponseFromAddress(address)).collect(Collectors.toList());
     }
 
     @Override
