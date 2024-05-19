@@ -11,4 +11,8 @@ public class GetCatalogProductOfferResponse {
     private String id;
     private String productOfferId;
     private String catalogId;
+    private String catalogName;
+    private String productOfferName;
+    private double productOfferTotalPrice;
+
 }

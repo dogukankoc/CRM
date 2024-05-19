@@ -9,5 +9,3 @@ spring:
       profile: dev
   config:
     import: configserver:http://localhost:8050/
-
-

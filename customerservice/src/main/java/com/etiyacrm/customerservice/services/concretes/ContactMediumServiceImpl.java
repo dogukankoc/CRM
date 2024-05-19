@@ -18,6 +18,7 @@ import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.Delete
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.GetContactMediumResponse;
 import com.etiyacrm.customerservice.services.dtos.responses.contactMedium.UpdatedContactMediumResponse;
 import com.etiyacrm.customerservice.services.mappers.ContactMediumMapper;
+import com.etiyacrm.customerservice.services.rules.ContactMediumBusinessRules;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     private CustomerService customerService;
     private CustomerProducer customerProducer;
     private IndividualCustomerService individualCustomerService;
+    private ContactMediumBusinessRules contactMediumBusinessRules;
 
     @Override
     public CreatedContactMediumResponse add(CreateContactMediumRequest createContactMediumRequest) {
@@ -58,6 +60,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
     @Override
     public UpdatedContactMediumResponse update(long id, UpdateContactMediumRequest updateContactMediumRequest) {
 
+
         ContactMedium getContactMediumById = findById(id);
         ContactMedium contactMedium = ContactMediumMapper.INSTANCE.contactMediumFromUpdateContactMediumRequest(updateContactMediumRequest);
         contactMedium.setId(id);
@@ -74,6 +77,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public GetContactMediumResponse getById(long id) {
+        contactMediumBusinessRules.contactMediumIdIsExist(id);
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         GetContactMediumResponse contactMediumResponse = ContactMediumMapper.INSTANCE.getContactMediumResponseFromContactMedium(contactMedium);
         return contactMediumResponse;
@@ -81,6 +85,7 @@ public class ContactMediumServiceImpl implements ContactMediumService {
 
     @Override
     public DeletedContactMediumResponse delete(long id) {
+        contactMediumBusinessRules.contactMediumIdIsExist(id);
         ContactMedium contactMedium = contactMediumRepository.findById(id).get();
         contactMedium.setId(id);
         contactMedium.setDeletedDate(LocalDateTime.now());

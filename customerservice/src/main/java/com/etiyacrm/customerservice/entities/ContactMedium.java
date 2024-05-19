@@ -15,6 +15,7 @@ public class ContactMedium extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(name = "e-mail")
     private String email;
 
