@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
-        <module name="catalogservice" />
         <module name="discoveryserver" />
         <module name="ConfigServer" />
         <module name="GatewayServer" />
@@ -28,6 +27,9 @@
         <module name="customerservice" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="catalogservice" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

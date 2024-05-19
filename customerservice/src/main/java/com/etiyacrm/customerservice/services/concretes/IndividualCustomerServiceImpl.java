@@ -66,6 +66,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 
     @Override
     public UpdatedIndividualCustomerResponse update(String id, UpdateIndividualCustomerRequest updateIndividualCustomerRequest) {
+        individualCustomerBusinessRules.individualCustomerIdIsExist(id);
 //        individualCustomerBusinessRules.individualCustomerNationalityIdentityCanNotBeDuplicatedWhenInserted(updateIndividualCustomerRequest.getNationalityIdentity());
         IndividualCustomer getIndividualCustomerById = findById(id);
         IndividualCustomer mappedIndividualCustomer = IndividualCustomerMapper.INSTANCE.individualCustomerFromUpdateIndividualCustomerRequest(updateIndividualCustomerRequest);
@@ -89,6 +90,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public DeletedIndividualCustomerResponse delete(String id) {
 //        individualCustomerBusinessRules.individualCustomerHasBeenDeleted(id);
+        individualCustomerBusinessRules.individualCustomerIdIsExist(id);
         IndividualCustomer getIndividualCustomerById = findById(id);
         getIndividualCustomerById.setDeletedDate(LocalDateTime.now());
         IndividualCustomer deletedIndividualCustomer = individualCustomerRepository.save(getIndividualCustomerById);
@@ -113,7 +115,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public GetIndividualCustomerResponse getById(String id) {
 //        individualCustomerBusinessRules.individualCustomerHasBeenDeleted(id);
-//        individualCustomerBusinessRules.individualCustomerIdIsExist(id);
+        individualCustomerBusinessRules.individualCustomerIdIsExist(id);
         IndividualCustomer individualCustomer = findById(id);
         GetIndividualCustomerResponse getIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
 //        getIndividualCustomerResponse.setEmail(individualCustomer.getCustomer().getEmail());

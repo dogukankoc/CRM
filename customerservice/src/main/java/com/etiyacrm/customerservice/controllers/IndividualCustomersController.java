@@ -36,7 +36,7 @@ public class IndividualCustomersController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreatedIndividualCustomerResponse add(@RequestBody CreateIndividualCustomerRequest createIndividualCustomerRequest) {
+    public CreatedIndividualCustomerResponse add(@Valid @RequestBody CreateIndividualCustomerRequest createIndividualCustomerRequest) {
         return individualCustomerService.add(createIndividualCustomerRequest);
     }
 

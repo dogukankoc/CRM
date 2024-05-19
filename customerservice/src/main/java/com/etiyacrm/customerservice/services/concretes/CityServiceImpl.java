@@ -79,6 +79,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public GetCityResponse getById(long id) {
+        cityBusinessRules.cityIdIsExist(id);
         cityBusinessRules.cityHasBeenDeleted(id);
         City getCityById = findById(id);
         return CityMapper.INSTANCE.getCityResponseFromCity(getCityById);
@@ -87,6 +88,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public DeletedCityResponse delete(long id) {
+        cityBusinessRules.cityIdIsExist(id);
         cityBusinessRules.cityHasBeenDeleted(id);
         City getCityById = findById(id);
         getCityById.setDeletedDate(LocalDateTime.now());

@@ -15,5 +15,8 @@ public class Messages {
 
         public static final String IdentityNumberNotExists = "identityNumberNotExists";
 
+        //Contact Medium
+        public static final String ContactMediumIdNotAvailable = "contactMediumIdNotAvailable";
+
     }
 }
