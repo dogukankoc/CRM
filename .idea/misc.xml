@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
@@ -16,11 +17,6 @@
         <option value="$PROJECT_DIR$/salesservice/pom.xml" />
         <option value="$PROJECT_DIR$/basketservice/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/catalogservice/pom.xml" />
-      </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>

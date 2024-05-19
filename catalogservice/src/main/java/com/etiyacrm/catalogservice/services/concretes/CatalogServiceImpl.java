@@ -77,4 +77,3 @@ public class CatalogServiceImpl implements CatalogService {
         return deletedCatalogResponse;
     }
 }
-

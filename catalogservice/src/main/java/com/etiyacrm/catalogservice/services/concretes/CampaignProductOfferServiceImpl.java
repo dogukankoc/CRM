@@ -1,6 +1,5 @@
 package com.etiyacrm.catalogservice.services.concretes;
 
-
 import com.etiyacrm.catalogservice.entities.CampaignProductOffer;
 import com.etiyacrm.catalogservice.repositories.CampaignProductOfferRepository;
 import com.etiyacrm.catalogservice.services.abstracts.CampaignProductOfferService;

@@ -11,7 +11,6 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface CatalogProductOfferMapper {
     CatalogProductOfferMapper INSTANCE = Mappers.getMapper(CatalogProductOfferMapper.class);
-
     @Mapping(source = "catalog.id", target = "catalogId")
     @Mapping(source = "productOffer.id", target = "productOfferId")
     GetAllCatalogProductOfferResponse getAllCatalogProductOfferResponseFromCatalogProductOffer(CatalogProductOffer catalogProductOffer);
@@ -32,6 +31,6 @@ public interface CatalogProductOfferMapper {
     @Mapping(source = "productOffer.id", target = "productOfferId")
     @Mapping(source = "catalog.name", target = "catalogName")
     @Mapping(source = "productOffer.name", target = "productOfferName")
-    @Mapping(source = "productOffer.price", target = "productOfferPrice")
+    @Mapping(source = "productOffer.totalPrice", target = "productOfferTotalPrice")
     GetCatalogProductOfferResponse getCatalogProductOfferResponseFromCatalogProductOffer(CatalogProductOffer catalogProductOffer);
 }

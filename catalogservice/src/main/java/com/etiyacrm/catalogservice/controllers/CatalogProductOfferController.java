@@ -14,7 +14,8 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/catalog_product_offers")
+@RequestMapping("api/v1/catalogproductoffers")
+@CrossOrigin
 public class CatalogProductOfferController {
     private CatalogProductOfferService catalogProductOfferService;
 
@@ -42,7 +43,7 @@ public class CatalogProductOfferController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "getById")
-    public List<GetCatalogProductOfferResponse> getById(@PathVariable String id) {
+    public GetCatalogProductOfferResponse getById(@PathVariable String id) {
         return catalogProductOfferService.finByProductOfferId(id);
     }
 

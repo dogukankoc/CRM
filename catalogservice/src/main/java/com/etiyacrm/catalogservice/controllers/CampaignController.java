@@ -4,11 +4,11 @@ import com.etiyacrm.catalogservice.services.abstracts.CampaignService;
 import com.etiyacrm.catalogservice.services.dtos.requests.campaignRequests.CreateCampaignRequest;
 import com.etiyacrm.catalogservice.services.dtos.requests.campaignRequests.UpdateCampaignRequest;
 import com.etiyacrm.catalogservice.services.dtos.responses.campaignResponses.*;
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
 
 import java.util.List;
 

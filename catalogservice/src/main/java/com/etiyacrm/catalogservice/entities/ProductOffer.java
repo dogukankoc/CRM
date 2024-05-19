@@ -1,6 +1,5 @@
 package com.etiyacrm.catalogservice.entities;
 
-
 import com.etiyacrm.catalogservice.core.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,16 +25,11 @@ public class ProductOffer extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description") //Gereksiz olabilir
+    @Column(name = "description")
     private String description;
 
-<<<<<<< HEAD
-    @Column(name = "code") //Gereksiz olabilir
-    private String code;
-=======
-    @Column(name = "price")
-    private double price;
->>>>>>> c2b4a2872a5df6589a417c3273811eb868faab4c
+    @Column(name = "totalPrice")
+    private double totalPrice;
 
     @OneToMany(mappedBy = "productOffer")
     private List<CampaignProductOffer> campaignProductOffers;
