@@ -116,6 +116,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
 //        individualCustomerBusinessRules.individualCustomerIdIsExist(id);
         IndividualCustomer individualCustomer = findById(id);
         GetIndividualCustomerResponse getIndividualCustomerResponse = IndividualCustomerMapper.INSTANCE.getIndividualCustomerResponseFromIndividualCustomer(individualCustomer);
+        getIndividualCustomerResponse.setCustomerId(individualCustomer.getCustomer().getId());
 //        getIndividualCustomerResponse.setEmail(individualCustomer.getCustomer().getEmail());
         return getIndividualCustomerResponse;
     }

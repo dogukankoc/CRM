@@ -15,4 +15,5 @@ public interface AddressService {
     DeletedAddressResponse delete(long id);
     List<GetAllAddressResponse> getAll();
     GetAddressResponse getById(long id);
+    public List<GetAddressResponse> getByCustomerId(String customerId);
 }
