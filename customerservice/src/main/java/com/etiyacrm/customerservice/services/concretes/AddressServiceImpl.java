@@ -88,6 +88,14 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public List<GetAddressResponse> getByCustomerId(String customerId) {
+        List<Address> addresses = addressRepository.findByCustomerId(customerId);
+        return addresses.stream().filter(address -> address.getDeletedDate() == null)
+                .map(address -> AddressMapper.INSTANCE.getAddressResponseFromAddress(address))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Address findById(long id) {
         return addressRepository.findById(id).orElseThrow(() -> new BusinessException("Address not found"));
     }

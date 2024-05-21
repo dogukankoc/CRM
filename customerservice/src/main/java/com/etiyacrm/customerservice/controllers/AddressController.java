@@ -26,6 +26,12 @@ public class AddressController {
         return addressService.getById(id);
     }
 
+    @GetMapping("customer/{customerId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<GetAddressResponse> getByCustomerId(@PathVariable String customerId){
+        return addressService.getByCustomerId(customerId);
+    }
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<GetAllAddressResponse> getAll() {

@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 public class GetAddressResponse {
     private long id;
-    private String description;
+    private String addressDescription;
     private String street;
     private String houseFlatNumber;
+    private String cityName;
     private int cityId;
     private String customerId;
 }
