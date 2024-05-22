@@ -15,7 +15,8 @@ public class BaseSecurityService {
             "/v2/api-docs",
             "/v3/api-docs",
             "/v3/api-docs/**",
-            "/api/v1/auth/**"
+            "/api/v1/auth/**",
+            "/customerservice/api/v1/**"
     };
     private final JwtAuthFilter jwtAuthFilter;
 
@@ -23,7 +24,7 @@ public class BaseSecurityService {
     {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(req-> req.requestMatchers("WHITE_LIST_URLS").permitAll())
+                .authorizeHttpRequests(req-> req.requestMatchers(WHITE_LIST_URLS).permitAll())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity;

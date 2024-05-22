@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@ComponentScan(basePackages = {"com.etiya.common"})
+@ComponentScan(basePackages = {"com.etiyacrm.common"})
 public @interface EnableSecurity { }
