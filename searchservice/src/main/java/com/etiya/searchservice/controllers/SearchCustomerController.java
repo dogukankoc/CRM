@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 @RestController
 @AllArgsConstructor
 @CrossOrigin("*")
-@RequestMapping("api/v1/search-service")
+@RequestMapping("/api/v1/search-service")
 public class SearchCustomerController {
     private FilterService filterService;
 

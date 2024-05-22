@@ -1,7 +1,8 @@
 package com.etiyacrm.customerservice.services.concretes;
 
 import com.etiyacrm.common.events.customers.CustomerCreatedEvent;
-import com.etiyacrm.customerservice.core.crossCusttingConcerns.types.BusinessException;
+
+import com.etiyacrm.common.exceptions.types.BusinessException;
 import com.etiyacrm.customerservice.entities.City;
 import com.etiyacrm.customerservice.entities.ContactMedium;
 import com.etiyacrm.customerservice.entities.Customer;
