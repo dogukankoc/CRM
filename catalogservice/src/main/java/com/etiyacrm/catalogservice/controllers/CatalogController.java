@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/catalogs")
+@RequestMapping("/api/v1/catalogs")
 public class CatalogController {
     private CatalogService catalogService;
 

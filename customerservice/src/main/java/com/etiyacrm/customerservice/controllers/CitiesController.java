@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("customerservice/api/v1/cities")
+@RequestMapping("/api/v1/cities")
 @CrossOrigin(origins = "*")
 public class CitiesController {
 

@@ -20,7 +20,7 @@ public class SecurityConfiguration {
         baseSecurityService.configureCoreSecurity(http);
         http
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()
+                        .requestMatchers("/swagger-ui/**","/v3/api-docs/**","/api/v1/auth/**").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/campaigns")
+@RequestMapping("/api/v1/campaigns")
 public class CampaignController {
     private CampaignService campaignService;
 
