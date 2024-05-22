@@ -1,4 +1,4 @@
-package com.etiyacrm.customerservice.core.configuration;
+package com.etiya.searchservice.core;
 
 import com.etiyacrm.common.configuration.BaseSecurityService;
 import lombok.RequiredArgsConstructor;
